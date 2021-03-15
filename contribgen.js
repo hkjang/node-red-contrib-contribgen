@@ -32,6 +32,8 @@ module.exports = function (RED) {
       data.require = self.require || msg.require;
       data.parameters = self.parameters || msg.parameters;
       data.dependencies = self.dependencies || msg.dependencies;
+      data.ncontent = self.ncontent || msg.ncontent;
+      data.form = self.form || msg.form;
 
       var options = {};
       var promise;
