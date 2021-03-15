@@ -36,7 +36,9 @@ https://flows.nodered.org/add/node
 - dst : Destination folder to be created (default: node-red execution location)
 - template : Template folder location required to create (default: /home/server/.node-red/node_modules/node-red-contrib-contribgen/templates/function
 - lang : Language negotiation information when retrieve a Thing Description
-- content : function contents 
+- content : in msg function contents on js file
+- ncontent :  in FunctionNode contents on js file 
+- form : form contents on html file 
 - require : require modules for contrib node (ex. const Diff = require("diff");)
 - dependencies : dependencies for contrib node (ex. "diff": "^5.0.0") 
 - parameters : msg parameters for contrib node (ex. targetObject: {value:"", required:false},oldValue: {value:"", required:false},newValue: {value:"", required:false},) 
@@ -44,10 +46,10 @@ https://flows.nodered.org/add/node
 ```javascript
 msg = {};
 msg.prefix = 'node-red-contrib-';
-msg.fname = 'jsdiff2';
+msg.fname = 'newsapi';
 msg.module = '';
 msg.version = '1.0.0';
-msg.keywords = 'jsdiff2';
+msg.keywords = 'newsapi';
 msg.category = '';
 msg.icon = '';
 msg.color = '';
@@ -55,17 +57,25 @@ msg.color = '';
 msg.dst = '/home/server/.node-red/node_modules/';
 // if OS is Window
 msg.dst = 'C:/Users/user/.node-red/node_modules/';
+// msg.dst = 'D:/project/';
 msg.lang = '';
-msg.content = 'msg.payload = Diff[node.targetObject](node.oldValue, node.newValue);';
-msg.require = 'const Diff = require("diff");';
-msg.dependencies = '"diff": "^5.0.0"';
-msg.parameters = 'targetObject: {value:"", required:false},oldValue: {value:"", required:false},newValue: {value:"", required:false},';
+msg.dependencies = '"newsapi": "^2.4.1"';
+msg.require = 'const NewsAPI = require("newsapi");';
+msg.ncontent = 'const newsapi = new NewsAPI(n.key);';
+msg.content = 'newsapi.v2[node.api](node.queries).then(response => {msg.payload = response;node.send(msg);});';
+msg.form = '    <div class="form-row">';
+msg.form += '        <label for="node-input-key"><i class="fa fa-key"></i> key</label>';
+msg.form += '        <input type="text" id="node-input-key" data-i18n="key">';
+msg.form += '    </div>';
+msg.parameters = 'api: {value:"", required:false},';
+msg.parameters += 'key: {value:"", required:false},';
+msg.parameters += 'queries: {value:"", required:false},'
 return msg;
 ```
 
 ### Results
 ```text
-Success: node-red-contrib-jsdiff2
+Success: node-red-contrib-newsapi
 ```
 
 Sample Flow
@@ -73,31 +83,7 @@ Sample Flow
 ```json
 [
   {
-    "id": "538bd2b5.dcb82c",
-    "type": "contribgen",
-    "z": "a49a72c8.3d0a7",
-    "prefix": "",
-    "fname": "",
-    "module": "",
-    "version": "",
-    "keywords": "",
-    "category": "",
-    "icon": "",
-    "color": "",
-    "dst": "",
-    "lang": "",
-    "template": "",
-    "name": "contribgen",
-    "x": 490,
-    "y": 180,
-    "wires": [
-      [
-        "7e73609b.e5e75"
-      ]
-    ]
-  },
-  {
-    "id": "a596a6c3.c3a798",
+    "id": "d2ec8c7b.d11a9",
     "type": "inject",
     "z": "a49a72c8.3d0a7",
     "name": "",
@@ -118,33 +104,33 @@ Sample Flow
     "payload": "",
     "payloadType": "date",
     "x": 120,
-    "y": 180,
+    "y": 220,
     "wires": [
       [
-        "9657f2c0.ffa33"
+        "c7d049a6.35d868"
       ]
     ]
   },
   {
-    "id": "9657f2c0.ffa33",
+    "id": "c7d049a6.35d868",
     "type": "function",
     "z": "a49a72c8.3d0a7",
-    "name": "",
-    "func": "msg = {};\nmsg.prefix = 'node-red-contrib-';\nmsg.fname = 'jsdiff2';\nmsg.module = '';\nmsg.version = '1.0.0';\nmsg.keywords = 'jsdiff2';\nmsg.category = '';\nmsg.icon = '';\nmsg.color = '';\n// if OS is linux, MAC\nmsg.dst = '/home/server/.node-red/node_modules/';\n// if OS is Window\nmsg.dst = 'C:/Users/user/.node-red/node_modules/';\nmsg.lang = '';\nmsg.content = 'msg.payload = Diff[node.targetObject](node.oldValue, node.newValue);';\nmsg.require = 'const Diff = require(\"diff\");';\nmsg.dependencies = '\"diff\": \"^5.0.0\"';\nmsg.parameters = 'targetObject: {value:\"\", required:false},oldValue: {value:\"\", required:false},newValue: {value:\"\", required:false},';\nreturn msg;",
+    "name": "newsapi",
+    "func": "msg = {};\nmsg.prefix = 'node-red-contrib-';\nmsg.fname = 'newsapi';\nmsg.module = '';\nmsg.version = '1.0.0';\nmsg.keywords = 'newsapi';\nmsg.category = '';\nmsg.icon = '';\nmsg.color = '';\n// if OS is linux, MAC\nmsg.dst = '/home/server/.node-red/node_modules/';\n// if OS is Window\nmsg.dst = 'C:/Users/user/.node-red/node_modules/';\n// msg.dst = 'D:/project/';\nmsg.lang = '';\nmsg.dependencies = '\"newsapi\": \"^2.4.1\"';\nmsg.require = 'const NewsAPI = require(\"newsapi\");';\nmsg.ncontent = 'const newsapi = new NewsAPI(n.key);';\nmsg.content = 'newsapi.v2[node.api](node.queries).then(response => {msg.payload = response;node.send(msg);});';\nmsg.form = '    <div class=\"form-row\">';\nmsg.form += '        <label for=\"node-input-key\"><i class=\"fa fa-key\"></i> key</label>';\nmsg.form += '        <input type=\"text\" id=\"node-input-key\" data-i18n=\"key\">';\nmsg.form += '    </div>';\nmsg.parameters = 'api: {value:\"\", required:false},';\nmsg.parameters += 'key: {value:\"\", required:false},';\nmsg.parameters += 'queries: {value:\"\", required:false},'\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "x": 300,
-    "y": 180,
+    "y": 220,
     "wires": [
       [
-        "538bd2b5.dcb82c"
+        "2631fc14.d4ad24"
       ]
     ]
   },
   {
-    "id": "7e73609b.e5e75",
+    "id": "e81ccdfa.57e84",
     "type": "debug",
     "z": "a49a72c8.3d0a7",
     "name": "",
@@ -157,8 +143,32 @@ Sample Flow
     "statusVal": "",
     "statusType": "auto",
     "x": 650,
-    "y": 180,
+    "y": 220,
     "wires": []
+  },
+  {
+    "id": "2631fc14.d4ad24",
+    "type": "contribgen",
+    "z": "a49a72c8.3d0a7",
+    "prefix": "",
+    "fname": "",
+    "module": "",
+    "version": "",
+    "keywords": "",
+    "category": "",
+    "icon": "",
+    "color": "",
+    "dst": "",
+    "lang": "",
+    "template": "",
+    "name": "contribgen",
+    "x": 490,
+    "y": 220,
+    "wires": [
+      [
+        "e81ccdfa.57e84"
+      ]
+    ]
   }
 ]
 
