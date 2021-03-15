@@ -1,0 +1,90 @@
+[
+  {
+    "id": "538bd2b5.dcb82c",
+    "type": "contribgen",
+    "z": "a49a72c8.3d0a7",
+    "prefix": "",
+    "fname": "",
+    "module": "",
+    "version": "",
+    "keywords": "",
+    "category": "",
+    "icon": "",
+    "color": "",
+    "dst": "",
+    "lang": "",
+    "template": "",
+    "name": "contribgen",
+    "x": 490,
+    "y": 180,
+    "wires": [
+      [
+        "7e73609b.e5e75"
+      ]
+    ]
+  },
+  {
+    "id": "a596a6c3.c3a798",
+    "type": "inject",
+    "z": "a49a72c8.3d0a7",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 120,
+    "y": 180,
+    "wires": [
+      [
+        "9657f2c0.ffa33"
+      ]
+    ]
+  },
+  {
+    "id": "9657f2c0.ffa33",
+    "type": "function",
+    "z": "a49a72c8.3d0a7",
+    "name": "",
+    "func": "msg = {};\nmsg.prefix = 'node-red-contrib-';\nmsg.fname = 'jsdiff2';\nmsg.module = '';\nmsg.version = '1.0.0';\nmsg.keywords = 'jsdiff2';\nmsg.category = '';\nmsg.icon = '';\nmsg.color = '';\n// if OS is linux, MAC\nmsg.dst = '/home/server/.node-red/node_modules/';\n// if OS is Window\nmsg.dst = 'C:/Users/user/.node-red/node_modules/';\nmsg.lang = '';\nmsg.content = 'msg.payload = Diff[node.targetObject](node.oldValue, node.newValue);';\nmsg.require = 'const Diff = require(\"diff\");';\nmsg.dependencies = '\"diff\": \"^5.0.0\"';\nmsg.parameters = 'targetObject: {value:\"\", required:false},oldValue: {value:\"\", required:false},newValue: {value:\"\", required:false},';\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 300,
+    "y": 180,
+    "wires": [
+      [
+        "538bd2b5.dcb82c"
+      ]
+    ]
+  },
+  {
+    "id": "7e73609b.e5e75",
+    "type": "debug",
+    "z": "a49a72c8.3d0a7",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 650,
+    "y": 180,
+    "wires": []
+  }
+]
