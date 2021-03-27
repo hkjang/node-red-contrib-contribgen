@@ -1,11 +1,35 @@
 {
-  "version": "1.0.4",
+  "_from": "node-red-contrib-contribgen@1.0.5",
+  "_id": "node-red-contrib-contribgen@1.0.5",
+  "_inBundle": false,
+  "_integrity": "sha512-NQcg7DAMBWpkPcv5uf5X/8LGvL6t+1vLCVZNKFwDc0ceqGz7QRx0ohVWYadcIcULN4KI9dAll/X+dv/MUBULxg==",
+  "_location": "/node-red-contrib-contribgen",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "node-red-contrib-contribgen@1.0.5",
+    "name": "node-red-contrib-contribgen",
+    "escapedName": "node-red-contrib-contribgen",
+    "rawSpec": "1.0.5",
+    "saveSpec": null,
+    "fetchSpec": "1.0.5"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-red-contrib-contribgen/-/node-red-contrib-contribgen-1.0.5.tgz",
+  "_shasum": "a0503219d8c2efc5b9c3caa2a21669758f4ee006",
+  "_spec": "node-red-contrib-contribgen@1.0.5",
+  "_where": "C:\\Users\\gagag\\.node-red",
   "author": {
     "name": "hkjang"
   },
   "bugs": {
     "url": "https://github.com/hkjang/node-red-contrib-contribgen/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "csv-string": "^4.0.1",
     "javascript-obfuscator": "^2.11.0",
@@ -33,5 +57,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hkjang/node-red-contrib-contribgen.git"
-  }
+  },
+  "version": "1.0.5"
 }
