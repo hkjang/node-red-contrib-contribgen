@@ -39,6 +39,7 @@ https://flows.nodered.org/add/node
 - content : in msg function contents on js file
 - ncontent :  in FunctionNode contents on js file 
 - form : form contents on html file 
+- githubId : github id on package json file 
 - require : require modules for contrib node (ex. const Diff = require("diff");)
 - dependencies : dependencies for contrib node (ex. "diff": "^5.0.0") 
 - parameters : msg parameters for contrib node (ex. targetObject: {value:"", required:false},oldValue: {value:"", required:false},newValue: {value:"", required:false},) 
@@ -70,6 +71,7 @@ msg.form += '    </div>';
 msg.parameters = 'api: {value:"", required:false},';
 msg.parameters += 'key: {value:"", required:false},';
 msg.parameters += 'queries: {value:"", required:false},'
+msg.githubId = 'hkjang';
 return msg;
 ```
 

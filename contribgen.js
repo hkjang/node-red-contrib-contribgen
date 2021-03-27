@@ -34,6 +34,7 @@ module.exports = function (RED) {
       data.dependencies = self.dependencies || msg.dependencies;
       data.ncontent = self.ncontent || msg.ncontent;
       data.form = self.form || msg.form;
+      data.githubId = self.githubId || msg.githubId;
 
       var options = {};
       var promise;
